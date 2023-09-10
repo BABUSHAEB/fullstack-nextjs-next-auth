@@ -5,7 +5,16 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 
-const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
+const PromptCard = ({
+  post,
+  handleEdit,
+  handleDelete,
+  handleTagClick,
+  openDialog,
+  setOpenDialog,
+  hasConfirmed,
+  setHasConfirmed,
+}) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -25,69 +34,95 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   };
 
   return (
-    <div className="prompt_card">
-      <div className="flex justify-between items-start gap-5">
-        <div
-          className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
-          onClick={handleProfileClick}
-        >
-          <Image
-            src={post.creater?.image}
-            alt="user_image"
-            width={40}
-            height={40}
-            className="rounded-full object-contain"
-          />
+    <>
+      <div className="prompt_card">
+        <div className="flex justify-between items-start gap-5">
+          <div
+            className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
+            onClick={handleProfileClick}
+          >
+            <Image
+              src={post.creater?.image}
+              alt="user_image"
+              width={40}
+              height={40}
+              className="rounded-full object-contain"
+            />
 
-          <div className="flex flex-col">
-            <h3 className="font-satoshi font-semibold text-gray-900">
-              {post?.creater?.username}
-            </h3>
-            <p className="font-inter text-sm text-gray-500">
-              {post?.creater?.email}
-            </p>
+            <div className="flex flex-col">
+              <h3 className="font-satoshi font-semibold text-gray-900">
+                {post?.creater?.username}
+              </h3>
+              <p className="font-inter text-sm text-gray-500">
+                {post?.creater?.email}
+              </p>
+            </div>
+          </div>
+
+          <div className="copy_btn" onClick={handleCopy}>
+            <Image
+              src={
+                copied === post.prompt
+                  ? "/assets/icons/tick.svg"
+                  : "/assets/icons/copy.svg"
+              }
+              alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
+              width={12}
+              height={12}
+            />
           </div>
         </div>
 
-        <div className="copy_btn" onClick={handleCopy}>
-          <Image
-            src={
-              copied === post.prompt
-                ? "/assets/icons/tick.svg"
-                : "/assets/icons/copy.svg"
-            }
-            alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
-            width={12}
-            height={12}
-          />
-        </div>
+        <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+        <p
+          className="font-inter text-sm blue_gradient cursor-pointer"
+          onClick={() => handleTagClick && handleTagClick(post.tag)}
+        >
+          #{post.tag}
+        </p>
+
+        {session?.user?.id === post?.creater?._id &&
+          pathName === "/profile" && (
+            <div className="mt-5 flex  items-center gap-4 border-t border-gray-100 pt-3">
+              <p
+                className="font-inter text-sm bg-green-500 text-white px-4 py-[6px] rounded-md cursor-pointer"
+                onClick={handleEdit}
+              >
+                Edit
+              </p>
+              <p
+                className="font-inter text-sm bg-orange-500 text-white px-4 py-[6px] rounded-md cursor-pointer"
+                onClick={handleDelete}
+              >
+                Delete
+              </p>
+            </div>
+          )}
       </div>
-
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-      <p
-        className="font-inter text-sm blue_gradient cursor-pointer"
-        onClick={() => handleTagClick && handleTagClick(post.tag)}
-      >
-        #{post.tag}
-      </p>
-
-      {session?.user?.id === post?.creater?._id && pathName === "/profile" && (
-        <div className="mt-5 flex-center gap-4 border-t border-gray-100 pt-3">
-          <p
-            className="font-inter text-sm green_gradient cursor-pointer"
-            onClick={handleEdit}
-          >
-            Edit
-          </p>
-          <p
-            className="font-inter text-sm orange_gradient cursor-pointer"
-            onClick={handleDelete}
-          >
-            Delete
-          </p>
+      {openDialog && (
+        <div className="rounded-md w-[80vw]  md:w-[380px] shadow-xl  absolute top-[50%] mx-auto my-auto  bg-white">
+          <div className="py-7 px-7  flex-col  justify-start">
+            <h1 className="text-[17px] md:font-bold">
+              Are you sure you want to delete this prompt?
+            </h1>
+            <div className="mt-5 flex  items-center  gap-4 ">
+              <p
+                className="font-inter text-sm bg-green-500 text-white px-4 py-[6px] rounded-md cursor-pointer"
+                onClick={() => setHasConfirmed((prev) => !prev)}
+              >
+                Delete
+              </p>
+              <p
+                className="font-inter text-sm bg-orange-500 text-white px-4 py-[6px] rounded-md cursor-pointer"
+                onClick={() => setOpenDialog((prev) => !prev)}
+              >
+                Cancel
+              </p>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

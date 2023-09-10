@@ -21,13 +21,15 @@ export default function NavBar() {
     <nav className="justify-between flex items-center w-full mb-16 mt-5">
       <Link href="/" className="flex gap-2 items-center flex-center">
         <Image
-          src="/assets/images/logo.svg"
+          src="/assets/images/logo.png"
+          // src="/assets/images/Loading.gif"
           alt="logo"
-          width={30}
-          height={30}
-          className="object-contain"
+          width={40}
+          height={40}
         />
-        <p className="logo_text">Promptopia</p>
+        <p className=" text bg-gradient-to-r text-[18px] font-[900] from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent">
+          Blog Post
+        </p>
       </Link>
 
       {/* Desktop Navigation */}

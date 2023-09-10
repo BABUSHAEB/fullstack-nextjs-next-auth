@@ -11,6 +11,7 @@ const MyProfile = () => {
   const { data: session } = useSession();
 
   const [myPosts, setMyPosts] = useState([]);
+  const [hasConfirmed, setHasConfirmed] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {

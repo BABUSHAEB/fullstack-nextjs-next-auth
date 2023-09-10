@@ -1,11 +1,15 @@
-"use server";
+// "use server";
 
 import React, { Suspense } from "react";
 import "@styles/globals.css";
 import NavBar from "@components/NavBar";
 import Provider from "@components/Provider";
-import Loading from "./loading";
-const RootLayout = ({ children }) => {
+
+export const metadata = {
+  title: "Blog Post",
+  description: "Express. Share. Evolve.",
+};
+const RootLayout = async ({ children }) => {
   return (
     <html>
       <body>
@@ -15,9 +19,7 @@ const RootLayout = ({ children }) => {
           </div>
 
           <main className="app">
-            <Suspense fallback={<Loading />}>
-              <NavBar />
-            </Suspense>
+            <NavBar />
             {children}
           </main>
         </Provider>

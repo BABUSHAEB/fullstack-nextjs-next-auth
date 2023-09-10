@@ -1,12 +1,21 @@
-// "use client";
+"use client";
+import Image from "next/image";
 import React from "react";
 
 export default function Loading() {
   return (
-    <div className="text-center text-[26px] text-blue-600 font-[900]">
-      <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-        loading ...
-      </svg>
-    </div>
+    <>
+      <div className="">
+        <Image
+          src={"/assets/images/Loading.gif"}
+          // fill
+          width={1920}
+          height={500}
+          objectFit="cover"
+          objectPosition="center"
+          alt="Loading"
+        />
+      </div>
+    </>
   );
 }
