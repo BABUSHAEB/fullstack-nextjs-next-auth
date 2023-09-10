@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
-  console.log(data, "from Feed");
   return (
     <div className="mt-16 flex flex-wrap gap-4">
       {data.map((post) => (
@@ -68,7 +67,6 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
-  console.log(allPosts);
   return (
     <section className="feed ">
       <form className="relative w-full flex-center">
