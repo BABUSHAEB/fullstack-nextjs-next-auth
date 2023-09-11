@@ -22,7 +22,6 @@ export default function NavBar() {
       <Link href="/" className="flex gap-2 items-center flex-center">
         <Image
           src="/assets/images/logo.png"
-          // src="/assets/images/Loading.gif"
           alt="logo"
           width={40}
           height={40}
@@ -38,10 +37,10 @@ export default function NavBar() {
           // {session ? (
           <div className="flex gap-3 md:gap-5 items-center">
             <Link
-              href="/create-prompt"
+              href="/create-blog"
               className="rounded-full border border-black bg-black text-white  hover:bg-white barder-[1px] hover:text-black  font-[600] text-[18px] py-1 px-4"
             >
-              Create Post
+              Create Blog
             </Link>
 
             <button
@@ -108,11 +107,11 @@ export default function NavBar() {
                   My Profile
                 </Link>
                 <Link
-                  href="/create-prompt"
+                  href="/create-blog"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Prompt
+                  Create Blog
                 </Link>
                 <button
                   type="button"

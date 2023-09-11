@@ -1,4 +1,4 @@
-import Prompt from "@models/prompt";
+import Blog from "@models/blog";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params }) => {
@@ -6,7 +6,7 @@ export const GET = async (req, { params }) => {
 
   try {
     await connectToDB();
-    const posts = await Prompt.find({ creater: params.id }).populate("creater");
+    const posts = await Blog.find({ creater: params.id }).populate("creater");
     if (!posts) {
       return new Response("Data not found", { status: 404 });
     }

@@ -1,7 +1,12 @@
 import React, { Suspense } from "react";
 
 import Feed from "@components/Feed";
+import Loading from "./loading";
+import dynamic from "next/dynamic";
 
+const WithCustomLoading = dynamic(() => import("@components/Feed"), {
+  loading: () => <Loading />,
+});
 const Home = async () => {
   return (
     <>
@@ -18,8 +23,9 @@ const Home = async () => {
           power of storytelling!
         </p>
       </section>
-
-      <Feed />
+      <Suspense fallback={<Loading />}>
+        <WithCustomLoading />
+      </Suspense>
     </>
   );
 };

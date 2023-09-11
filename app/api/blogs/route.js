@@ -1,12 +1,12 @@
 import { connectToDB } from "@utils/database";
 
-import Prompt from "@models/prompt";
+import Blog from "@models/blog";
 
 export const GET = async (req) => {
   try {
     await connectToDB();
-    const prompts = await Prompt.find({}).populate("creater");
-    return new Response(JSON.stringify(prompts), { status: 200 });
+    const blogs = await Blog.find({}).populate("creater");
+    return new Response(JSON.stringify(blogs), { status: 200 });
   } catch (error) {
     return new Response("Data not found", { status: 400 });
   }

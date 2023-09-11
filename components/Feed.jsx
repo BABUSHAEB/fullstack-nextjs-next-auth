@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy } from "react";
 
 import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 flex flex-wrap gap-4">
+    <div className="mt-8 flex flex-wrap gap-6">
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -27,7 +27,7 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const response = await fetch("/api/blogs");
     const data = await response.json();
 
     setAllPosts(data);
@@ -41,7 +41,7 @@ const Feed = () => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
     return allPosts.filter(
       (item) =>
-        regex.test(item.creator.username) ||
+        regex.test(item.creater.username) ||
         regex.test(item.tag) ||
         regex.test(item.prompt)
     );
@@ -66,7 +66,6 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
-
   return (
     <section className="feed ">
       <form className="relative w-full flex-center">

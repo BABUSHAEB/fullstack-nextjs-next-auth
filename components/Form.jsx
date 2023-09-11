@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EditorsInput from "./EditorsInput";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
@@ -17,21 +18,56 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Your AI Prompt
+            Title of Blog
           </span>
-
-          <textarea
-            value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
-            placeholder="Write your post here"
+          <input
+            value={post.blogtitle}
+            onChange={(e) =>
+              setPost({
+                ...post,
+                blogtitle: e.target.value,
+                slug: e.target.value.replaceAll(" ", "-"),
+              })
+            }
+            type="text"
+            placeholder="How to write ..."
             required
-            className="form_textarea "
+            className="form_input"
           />
         </label>
 
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
-            Field of Prompt{" "}
+            Title of Blog
+          </span>
+          <input
+            value={post.slug}
+            // onChange={(e) =>
+            //   setPost({ ...post,  })
+            // }
+            type="text"
+            placeholder="How to write ..."
+            required
+            disabled
+            className="form_input"
+          />
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700 my-3">
+            Your Blog
+          </span>
+
+          <EditorsInput
+            className="my-5"
+            formData={post}
+            setFormData={setPost}
+          />
+        </label>
+
+        <label>
+          <span className="font-satoshi font-semibold text-base text-gray-700">
+            Field of Tag
             <span className="font-normal">
               (#product, #webdevelopment, #idea, etc.)
             </span>

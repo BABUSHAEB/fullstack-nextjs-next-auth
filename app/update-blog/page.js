@@ -15,7 +15,7 @@ export default function Page() {
 
   const handleFetch = async (Id) => {
     try {
-      const res = await fetch(`api/prompt/${Id}`, {
+      const res = await fetch(`api/blogs/${Id}`, {
         method: "GET",
       });
       const data = await res.json();
@@ -33,10 +33,12 @@ export default function Page() {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      const response = await fetch(`api/prompt/${Id}`, {
+      const response = await fetch(`api/blogs/${Id}`, {
         method: "PATCH",
         body: JSON.stringify({
-          prompt: post.prompt,
+          blogtitle: post.blogtitle,
+          slug: post.slug,
+          blogdetails: post.blogdetails,
           tag: post.tag,
         }),
       });

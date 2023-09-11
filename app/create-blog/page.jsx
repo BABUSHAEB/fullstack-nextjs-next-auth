@@ -11,17 +11,24 @@ const CreatePrompt = () => {
   const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
-  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const [post, setPost] = useState({
+    blogtitle: "",
+    slug: "",
+    blogdetails: "",
+    tag: "",
+  });
 
-  const createPrompt = async (e) => {
+  const createBlog = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/prompt/new", {
+      const response = await fetch("/api/blogs/new", {
         method: "POST",
         body: JSON.stringify({
-          prompt: post.prompt,
+          blogtitle: post.blogtitle,
+          slug: post.slug,
+          blogdetails: post.blogdetails,
           userId: session?.user.id,
           tag: post.tag,
         }),
@@ -44,7 +51,7 @@ const CreatePrompt = () => {
         post={post}
         setPost={setPost}
         submitting={submitting}
-        handleSubmit={createPrompt}
+        handleSubmit={createBlog}
       />
     </>
   );

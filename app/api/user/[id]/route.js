@@ -1,10 +1,10 @@
-import Prompt from "@models/prompt";
+import Blog from "@models/blog";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params }) => {
   try {
     await connectToDB();
-    const user = await Prompt.find({ creater: params.id }).populate("creater");
+    const user = await Blog.find({ creater: params.id }).populate("creater");
     if (!user) {
       return new Response("Invalid User ", { status: 404 });
     }

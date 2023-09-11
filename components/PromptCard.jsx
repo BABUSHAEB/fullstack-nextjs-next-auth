@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 const PromptCard = ({
   post,
@@ -35,7 +36,7 @@ const PromptCard = ({
 
   return (
     <>
-      <div className="prompt_card">
+      <div className="prompt_card ">
         <div className="flex justify-between items-start gap-5">
           <div
             className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
@@ -58,28 +59,26 @@ const PromptCard = ({
               </p>
             </div>
           </div>
-
-          <div className="copy_btn" onClick={handleCopy}>
-            <Image
-              src={
-                copied === post.prompt
-                  ? "/assets/icons/tick.svg"
-                  : "/assets/icons/copy.svg"
-              }
-              alt={copied === post.prompt ? "tick_icon" : "copy_icon"}
-              width={12}
-              height={12}
-            />
-          </div>
         </div>
 
-        <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
-        <p
-          className="font-inter text-sm blue_gradient cursor-pointer"
-          onClick={() => handleTagClick && handleTagClick(post.tag)}
-        >
-          #{post.tag}
+        <p className="my-4 font-satoshi text-[16px] font-bold  text-gray-700">
+          {post.blogtitle}
         </p>
+        {/* <div dangerouslySetInnerHTML={{ __html: postblogdetails }} /> */}
+
+        <div className="flex justify-between items-center">
+          <p
+            className="font-inter text-sm blue_gradient cursor-pointer"
+            onClick={() => handleTagClick && handleTagClick(post.tag)}
+          >
+            #{post.tag}
+          </p>
+          <Link href={`/blogs/${post.slug}`}>
+            <button className=" bg-orange-500 rounded-xl px-3 py-2 font-inter text-sm text-white  cursor-pointer">
+              View Blog
+            </button>
+          </Link>
+        </div>
 
         {session?.user?.id === post?.creater?._id &&
           pathName === "/profile" && (

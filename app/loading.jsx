@@ -5,8 +5,8 @@ import React from "react";
 export default function Loading() {
   return (
     <>
-      <div className="">
-        <Image
+      <div className="w-full h-full">
+        <vedio
           src={"/assets/images/Loading.gif"}
           // fill
           width={1920}
