@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
@@ -20,18 +18,12 @@ const PromptCard = ({
   const pathName = usePathname();
   const router = useRouter();
 
-  const [copied, setCopied] = useState("");
+  // const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {
     if (post.creater._id === session?.user.id) return router.push("/profile");
 
     router.push(`/profile/${post.creater._id}?name=${post.creater.username}`);
-  };
-
-  const handleCopy = () => {
-    setCopied(post.prompt);
-    navigator.clipboard.writeText(post.prompt);
-    setTimeout(() => setCopied(false), 3000);
   };
 
   return (
@@ -64,7 +56,6 @@ const PromptCard = ({
         <p className="my-4 font-satoshi text-[16px] font-bold  text-gray-700">
           {post.blogtitle}
         </p>
-        {/* <div dangerouslySetInnerHTML={{ __html: postblogdetails }} /> */}
 
         <div className="flex justify-between items-center">
           <p
@@ -73,11 +64,22 @@ const PromptCard = ({
           >
             #{post.tag}
           </p>
-          <Link href={`/blogs/${post.slug}`}>
-            <button className=" bg-orange-500 rounded-xl px-3 py-2 font-inter text-sm text-white  cursor-pointer">
-              View Blog
-            </button>
-          </Link>
+          {pathName === "/" ? (
+            // ? session?.user?.id !== post?.creater?._id && (
+            <Link href={`/blogs/${post.slug}`}>
+              <button className="bg-orange-500 rounded-xl px-3 py-2 font-inter text-sm text-white  cursor-pointer">
+                View Blog
+              </button>
+            </Link>
+          ) : (
+            session?.user?.id !== post?.creater?._id && (
+              <Link href={`/blogs/${post.slug}`}>
+                <button className="bg-orange-500 rounded-xl px-3 py-2 font-inter text-sm text-white  cursor-pointer">
+                  View Blog
+                </button>
+              </Link>
+            )
+          )}
         </div>
 
         {session?.user?.id === post?.creater?._id &&

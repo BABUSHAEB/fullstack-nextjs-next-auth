@@ -1,30 +1,24 @@
-"use client";
+"use server";
 
-import Loading from "@app/loading";
 import BlogsDetails from "@components/BlogsDetails";
-import React, { Suspense, useEffect, useState } from "react";
 
-const Page = ({ params: { slug } }) => {
-  const [blogData, setBlogData] = useState([]);
+export async function getBlogs(slug) {
+  let res = await fetch(
+    `${process.env.BASE_FETCH_URL}/api/blogs/blogdetails/${slug.toString()}`
+  );
+  // await new Promise((res) => setTimeout(res, 10000));
 
-  useEffect(() => {
-    const getDetails = async (slug) => {
-      // const response = await fetch("/api/blogs/blogdetails/how-to-learn-nextjs");
-      const response = await fetch(`/api/blogs/blogdetails/${slug.toString()}`);
+  let results = await res.json();
 
-      const Details = await response.json();
-      setBlogData(Details);
-    };
-    if (slug) getDetails(slug);
-  }, [slug]);
+  return results;
+}
+
+export default async function Page({ params: { slug } }) {
+  const data = await getBlogs(slug);
 
   return (
-    <div>
-      {/* <Suspense fallback={<Loading />}> */}
-      <BlogsDetails BlogsDetails={blogData} />
-      {/* </Suspense> */}
+    <div className="w-full">
+      <BlogsDetails blogsDetails={data} />
     </div>
   );
-};
-
-export default Page;
+}

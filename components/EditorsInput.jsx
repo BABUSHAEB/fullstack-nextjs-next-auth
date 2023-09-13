@@ -20,30 +20,35 @@ function EditorsInput({ formData = {}, setFormData }) {
         // initialValue="<p>This is the initial content of the editor.</p>"
         apiKey={process.env.TINYMCE_APIKEY}
         init={{
+          selector: "textarea#codesample",
+
           height: 500,
           menubar: true,
           plugins:
             "advlist autolink lists link image charmap preview anchor " +
-            "searchreplace visualblocks code fullscreen " +
-            "insertdatetime media table code help wordcount",
+            "searchreplace visualblocks codesample code fullscreen " +
+            "insertdatetime media table codesample code help wordcount",
+
           toolbar:
-            "undo redo | formatselect | " +
+            " formatselect | " +
             "bold italic backcolor | alignleft aligncenter " +
-            "alignright alignjustify | bullist numlist outdent indent | " +
+            "alignright alignjustify | bullist numlist outdent indent | codesample code" +
             "removeformat | help",
+
           content_style:
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+
           codesample_languages: [
             { text: "HTML/XML", value: "markup" },
             { text: "JavaScript", value: "javascript" },
-            { text: "CSS", value: "css" },
-            { text: "PHP", value: "php" },
-            { text: "Ruby", value: "ruby" },
-            { text: "Python", value: "python" },
-            { text: "Java", value: "java" },
-            { text: "C", value: "c" },
-            { text: "C#", value: "csharp" },
-            { text: "C++", value: "cpp" },
+            // { text: "CSS", value: "css" },
+            // { text: "PHP", value: "php" },
+            // { text: "Ruby", value: "ruby" },
+            // { text: "Python", value: "python" },
+            // { text: "Java", value: "java" },
+            // { text: "C", value: "c" },
+            // { text: "C#", value: "csharp" },
+            // { text: "C++", value: "cpp" },
           ],
         }}
         value={formData.blogdetails}

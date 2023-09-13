@@ -13,10 +13,17 @@ export default function NavBar() {
   useEffect(() => {
     (async () => {
       const res = await getProviders();
+
+      console.log(res);
       setProviders(res);
     })();
   }, []);
 
+  const handleSignIn = async (Id) => {
+    const dataResponse = await signIn(Id);
+
+    console.log(session, "from login hit");
+  };
   return (
     <nav className="justify-between flex items-center w-full mb-16 mt-5">
       <Link href="/" className="flex gap-2 items-center flex-center">
@@ -70,7 +77,8 @@ export default function NavBar() {
                   type="button"
                   key={provider.name}
                   onClick={() => {
-                    signIn(provider.id);
+                    // signIn(provider.id);
+                    handleSignIn(provider.id);
                   }}
                   className="rounded-full border border-black bg-black text-white  hover:bg-white barder-[1px] hover:text-black  font-[600] text-[18px] py-1 px-4"
                 >
@@ -134,7 +142,8 @@ export default function NavBar() {
                   type="button"
                   key={provider.name}
                   onClick={() => {
-                    signIn(provider.id);
+                    // signIn(provider.id);
+                    handleSignIn(provider.id);
                   }}
                   className="rounded-full border border-black bg-black text-white  hover:bg-white barder-[1px] hover:text-black  font-[600] text-[18px] py-1 px-4"
                 >

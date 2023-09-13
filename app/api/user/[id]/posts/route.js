@@ -2,8 +2,6 @@ import Blog from "@models/blog";
 import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params }) => {
-  console.log(params);
-
   try {
     await connectToDB();
     const posts = await Blog.find({ creater: params.id }).populate("creater");

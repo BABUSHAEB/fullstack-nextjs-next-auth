@@ -168,3 +168,66 @@ PromptCard Component .flex-center {
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+/* detailsblogs */
+.language-javascript,
+.language-markup {
+  @apply bg-gray-700 text-blue-500 px-6 py-5 rounded-xl w-[260px] md:w-[calc(100vw-16rem)];
+  @apply bg-gray-700 text-blue-500 px-6 py-5 rounded-xl w-[260px] md:w-[800px] h-[600px];
+
+  overscroll-behavior-x: contain;
+  overflow: scroll;
+}
+
+.language-markup::-webkit-scrollbar {
+  display: none;
+  overflow-x: scroll;
+}
+.language-javascript::-webkit-scrollbar {
+  display: none;
+  overflow-x: scroll;
+}
+
+.blogDetails h2 {
+  @apply text-[20px]  md:text-[26px] font-[700]  py-[3px];
+}
+.blogDetails h3 {
+  @apply text-[19px] font-[800]  py-1;
+}
+.blogDetails p {
+  @apply text-[18px] text-justify font-[400]  py-1;
+}
+.blogDetails p strong {
+  @apply text-[18px] font-[800];
+}
+.blogDetails span {
+  @apply text-[14px] font-[400]  py-1;
+}
+.blogDetails ol li {
+  list-style-type: decimal;
+
+  @apply text-[17px] font-[600]  py-1 ml-4;
+}
+.blogDetails ul li {
+  list-style-type: disc;
+
+  @apply text-[17px] font-[600]  py-1 ml-4;
+}
+.blogDetails div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* @apply text-[17px] font-[600] py-1 ml-4; */
+}
+
+@media screen and (max-width: 640px) {
+  .blogDetails div {
+    margin: 0;
+    padding: 0;
+  }
+}
+div img {
+  padding: 0;
+  /* @apply text-[17px] font-[600] py-1 ml-4; */
+}

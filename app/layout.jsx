@@ -12,6 +12,8 @@ export const metadata = {
   description: "Express. Share. Evolve.",
 };
 const RootLayout = async ({ children }) => {
+  // console.log(children);
+
   return (
     <html>
       <head>
@@ -21,7 +23,7 @@ const RootLayout = async ({ children }) => {
         ></Script>
       </head>
       <body>
-        <Suspense fallback={<Loading />}>
+        <Suspense key={children} fallback={<Loading />}>
           <Provider>
             <div className="main">
               <div className="gradient" />

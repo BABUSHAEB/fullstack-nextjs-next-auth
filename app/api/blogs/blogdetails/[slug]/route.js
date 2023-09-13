@@ -3,7 +3,6 @@ import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params: { slug } }) => {
   try {
-    console.log(slug, "fromm blogdetails");
     await connectToDB();
     const blogsdetail = await Blog.findOne({ slug: slug.toString() }).populate(
       "creater"
