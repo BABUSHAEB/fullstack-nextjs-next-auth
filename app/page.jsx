@@ -1,8 +1,6 @@
-"use server";
-
 export async function getBlogs() {
   let res = await fetch(`${process.env.BASE_FETCH_URL}/api/blogs`, {
-    cache: "no-store",
+    cache: "no-cache",
   });
 
   let results = await res.json();
