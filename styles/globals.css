@@ -172,8 +172,9 @@ PromptCard Component .flex-center {
 /* detailsblogs */
 .language-javascript,
 .language-markup {
-  @apply bg-gray-700 text-blue-500 px-6 py-5 rounded-xl w-[260px] md:w-[calc(100vw-16rem)];
-  @apply bg-gray-700 text-blue-500 px-6 py-5 rounded-xl w-[260px] md:w-[800px] h-[600px];
+  /* @apply bg-gray-700 text-blue-500 px-6 py-5
+   rounded-xl w-[260px] md:w-[calc(100vw-16rem)]; */
+  @apply bg-gray-700 text-blue-500 px-6 py-5 rounded-xl w-[auto] md:w-[800px] h-[600px];
 
   overscroll-behavior-x: contain;
   overflow: scroll;

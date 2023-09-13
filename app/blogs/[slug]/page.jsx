@@ -4,7 +4,8 @@ import BlogsDetails from "@components/BlogsDetails";
 
 export async function getBlogs(slug) {
   let res = await fetch(
-    `${process.env.BASE_FETCH_URL}/api/blogs/blogdetails/${slug.toString()}`
+    `${process.env.BASE_FETCH_URL}/api/blogs/blogdetails/${slug.toString()}`,
+    { cache: "no-store" }
   );
   // await new Promise((res) => setTimeout(res, 10000));
 

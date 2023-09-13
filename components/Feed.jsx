@@ -19,8 +19,8 @@ const PromptCardList = ({ data, handleTagClick }) => {
   );
 };
 
-const Feed = () => {
-  const [allPosts, setAllPosts] = useState([]);
+const Feed = ({ allPosts }) => {
+  // const [allPosts, setAllPosts] = useState([]);
 
   // Search states
   const [searchText, setSearchText] = useState("");
@@ -28,18 +28,10 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/blogs");
-    const data = await response.json();
-
-    setAllPosts(data);
+  useEffect(() => {
     setTimeout(() => {
       setLoader((prev) => !prev);
     }, 3000);
-  };
-
-  useEffect(() => {
-    fetchPosts();
   }, []);
 
   const filterPrompts = (searchtext) => {
