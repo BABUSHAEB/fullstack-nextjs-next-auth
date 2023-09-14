@@ -23,8 +23,8 @@ const RootLayout = async ({ children }) => {
           referrerpolicy="origin"
         ></Script>
       </head>
-      <Suspense key={children} fallback={<Loading />}>
-        <body>
+      <body>
+        <Suspense key={children} fallback={<Loading />}>
           <Provider>
             <div className="main">
               <div className="gradient" />
@@ -35,8 +35,8 @@ const RootLayout = async ({ children }) => {
               {children}
             </main>
           </Provider>
-        </body>
-      </Suspense>
+        </Suspense>
+      </body>
     </html>
   );
 };

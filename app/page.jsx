@@ -1,7 +1,12 @@
 export async function getBlogs() {
-  let res = await fetch(`${process.env.BASE_FETCH_URL}/api/blogs`, {
-    cache: "no-cache",
-  });
+  let res = await fetch(
+    `${process.env.BASE_FETCH_URL}/api/blogs`,
+
+    {
+      cache: "no-store",
+      // next: { revalidate: 1 },
+    }
+  );
 
   let results = await res.json();
 
@@ -14,6 +19,7 @@ import Loading from "./loading";
 
 const Home = async () => {
   const allPosts = await getBlogs();
+
   // const loader
   return (
     <>
