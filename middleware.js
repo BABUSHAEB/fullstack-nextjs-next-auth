@@ -6,7 +6,9 @@ export function middleware(request) {
   if (request) {
     // const coolies = request.cookies.get("next-auth.session-token")?.value;
     const isAuthorized =
-      request.cookies.get("next-auth.session-token")?.value || undefined;
+      request.cookies.get("next-auth.session-token")?.value ||
+      request.cookies.get("__Secure-next-auth.session-token")?.value ||
+      undefined;
 
     if (
       !isAuthorized &&

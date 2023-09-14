@@ -14,6 +14,7 @@ import Loading from "./loading";
 
 const Home = async () => {
   const allPosts = await getBlogs();
+  // const loader
   return (
     <>
       <section className="w-full flex-center items-center flex-col mb-9">

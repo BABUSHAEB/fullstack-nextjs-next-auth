@@ -9,7 +9,8 @@ import Script from "next/script";
 
 export const metadata = {
   title: "Blog Post",
-  description: "Express. Share. Evolve.",
+  description: "Here you can post your Content",
+  keyword: "Express. Share. Evolve.",
 };
 const RootLayout = async ({ children }) => {
   // console.log(children);
@@ -22,8 +23,8 @@ const RootLayout = async ({ children }) => {
           referrerpolicy="origin"
         ></Script>
       </head>
-      <body>
-        <Suspense key={children} fallback={<Loading />}>
+      <Suspense key={children} fallback={<Loading />}>
+        <body>
           <Provider>
             <div className="main">
               <div className="gradient" />
@@ -34,8 +35,8 @@ const RootLayout = async ({ children }) => {
               {children}
             </main>
           </Provider>
-        </Suspense>
-      </body>
+        </body>
+      </Suspense>
     </html>
   );
 };
