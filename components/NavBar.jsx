@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useRouter } from "next/navigation";
 export default function NavBar() {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -17,7 +19,14 @@ export default function NavBar() {
       setProviders(res);
     })();
   }, []);
-
+  const handleSignIn = (id) => {
+    signIn(id);
+    router.push("/");
+  };
+  const handleSignOut = () => {
+    signOut();
+    router.push("/");
+  };
   return (
     <nav className="justify-between flex items-center w-full mb-16 mt-5">
       <Link href="/" className="flex gap-2 items-center flex-center">
@@ -46,7 +55,7 @@ export default function NavBar() {
 
             <button
               type="button"
-              onClick={signOut}
+              onClick={handleSignOut}
               className="rounded-full border border-black hover:bg-black hover:text-white font-[600] text-[18px] py-1 px-4"
             >
               Sign Out
@@ -72,7 +81,7 @@ export default function NavBar() {
                   type="button"
                   key={provider.name}
                   onClick={() => {
-                    signIn(provider.id);
+                    handleSignIn(provider.id);
                   }}
                   className="rounded-full border border-black bg-black text-white  hover:bg-white barder-[1px] hover:text-black  font-[600] text-[18px] py-1 px-4"
                 >
@@ -119,7 +128,7 @@ export default function NavBar() {
                   type="button"
                   onClick={() => {
                     setToggleDropdown(false);
-                    signOut();
+                    handleSignOut();
                   }}
                   className="w-full mt-2 rounded-full border border-black bg-black text-white  hover:bg-white hover:text-black font-[600] text-[16px] py-1 px-6"
                 >
@@ -136,7 +145,7 @@ export default function NavBar() {
                   type="button"
                   key={provider.name}
                   onClick={() => {
-                    signIn(provider.id);
+                    handleSignIn(provider.id);
                   }}
                   className="rounded-full border border-black bg-black text-white  hover:bg-white barder-[1px] hover:text-black  font-[600] text-[18px] py-1 px-4"
                 >
