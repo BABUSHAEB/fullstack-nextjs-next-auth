@@ -18,7 +18,7 @@ export default function GlobalError({ error, reset }) {
                     </p>
 
                     <button
-                      onClick={() => reset()}
+                      onClick={() => location.reload()}
                       class="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
                     >
                       Take me there!
