@@ -13,14 +13,16 @@ export function middleware(request) {
 
     if (
       !isAuthorized &&
-      (request.nextUrl.pathname === process.env.SITE_URL + "/create-blog" ||
-        request.nextUrl.pathname === process.env.SITE_URL + "/update-blog")
+      (request.nextUrl.pathname === "/create-blog" ||
+        request.nextUrl.pathname === "/update-blog")
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }
 
-    if (request.nextUrl.pathname.startsWith(process.env.SITE_URL + "/api")) {
-      return NextResponse.redirect(new URL("/", request.url));
+    if (request.nextUrl.pathname.startsWith("/api/blogs*")) {
+      return NextResponse.redirect(
+        new URL(process.env.SITE_URL + `/`, request.url)
+      );
     }
   }
 }
