@@ -77,21 +77,23 @@ const Feed = ({ allPosts }) => {
           className="shadow-xl w-full py-2 px-3 border border-red-500 focus:outline-none rounded-full border-none"
         />
       </form>
-      {loader ? (
-        <>
-          {/* All Prompts */}
-          {searchText ? (
-            <PromptCardList
-              data={searchedResults}
-              handleTagClick={handleTagClick}
-            />
-          ) : (
-            <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-          )}
-        </>
-      ) : (
-        <Loading />
-      )}
+      {/* {loader ? ( */}
+      <>
+        {/* All Prompts */}
+        {searchText ? (
+          <PromptCardList
+            data={searchedResults}
+            handleTagClick={handleTagClick}
+          />
+        ) : (
+          <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        )}
+      </>
+      {/* // ) : (
+      //   <Loading />
+      // )
+      
+      } */}
     </section>
   );
 };

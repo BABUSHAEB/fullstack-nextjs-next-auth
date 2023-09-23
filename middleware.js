@@ -3,6 +3,7 @@ import { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request) {
+  // console.log(request.nextUrl.pathname);
   if (request) {
     // const coolies = request.cookies.get("next-auth.session-token")?.value;
     const isAuthorized =
@@ -17,10 +18,16 @@ export function middleware(request) {
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }
+
+    if (request.nextUrl.pathname.startsWith("/api/blogs*")) {
+      return NextResponse.redirect(
+        new URL(process.env.SITE_URL + `/`, request.url)
+      );
+    }
   }
 }
 
 // See "Matching Paths" below to learn more
 // export const config = {
-//   matcher: ["/create-blog", "/update-blog/:path*"],
+//   matcher: ["/api/:path*"],
 // };
