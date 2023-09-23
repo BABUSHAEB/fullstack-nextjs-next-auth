@@ -17,10 +17,13 @@ export function middleware(request) {
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }
+    if (request.nextUrl.pathname === "/api/:path*") {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
 }
 
 // See "Matching Paths" below to learn more
-export const config = {
-  matcher: ["/api/:path*"],
-};
+// export const config = {
+//   matcher: ["/api/:path*"],
+// };
