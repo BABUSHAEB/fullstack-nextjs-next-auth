@@ -1,16 +1,17 @@
 export async function getBlogs() {
-  let res = await fetch(
-    `${process.env.BASE_FETCH_URL}/api/blogs`,
+  let res;
+  if (process.env.BASE_FETCH_URL) {
+    res = await fetch(
+      `${process.env.BASE_FETCH_URL}/api/blogs`,
 
-    {
-      cache: "no-store",
-      // next: { revalidate: 1 },
-    }
-  );
-
-  let results = await res.json();
-
-  return results;
+      {
+        cache: "no-store",
+        // next: { revalidate: 1 },
+      }
+    );
+    let results = await res.json();
+    return results;
+  }
 }
 
 import Feed from "@components/Feed";
