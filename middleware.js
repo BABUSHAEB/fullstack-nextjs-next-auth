@@ -20,9 +20,7 @@ export function middleware(request) {
     }
 
     if (request.nextUrl.pathname.startsWith("/api/blogs*")) {
-      return NextResponse.redirect(
-        new URL(process.env.SITE_URL + `/`, request.url)
-      );
+      return NextResponse.redirect(new URL(`/`, request.url));
     }
   }
 }
