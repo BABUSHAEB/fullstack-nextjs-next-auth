@@ -1,3 +1,7 @@
+"use server";
+import Feed from "@components/Feed";
+import Loading from "./loading";
+
 export async function getBlogs() {
   let res;
   if (process.env.BASE_FETCH_URL) {
@@ -14,8 +18,6 @@ export async function getBlogs() {
   }
 }
 
-import Feed from "@components/Feed";
-import Loading from "./loading";
 // import dynamic from "next/dynamic";
 
 const Home = async () => {
