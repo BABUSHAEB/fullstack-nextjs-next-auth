@@ -21,6 +21,6 @@ export function middleware(request) {
 }
 
 // See "Matching Paths" below to learn more
-// export const config = {
-//   matcher: ["/create-blog", "/update-blog/:path*"],
-// };
+export const config = {
+  matcher: ["/api/:path*"],
+};
